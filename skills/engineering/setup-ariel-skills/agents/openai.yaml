@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup Ariel Skills"
+  short_description: "Prepare a repo with my standards and skills"
+policy:
+  allow_implicit_invocation: false
