@@ -1,6 +1,6 @@
 # Managed block template
 
-Assemble the block from the sections below that accepted profiles list, in this order. Text in `<angle brackets>` is filled from exploration; remove any bullet that has nothing real to point at. Keep the block short: it is loaded on every turn, so it names where things are and leaves the detail in the linked files.
+Assemble the block from the sections below that accepted recommendations list, in this order. Text in `<angle brackets>` is filled from exploration; remove any bullet that has nothing real to point at. Keep the block short: it is loaded on every turn, so it names where things are and leaves the detail in the linked files.
 
 ```markdown
 <!-- setup-ariel-skills:start v<version> -->
@@ -28,5 +28,5 @@ Section rules:
 
 - **Language**: always. If the repo already documents a different language policy outside the block, ask the user which wins before writing.
 - **Engineering standards**: always.
-- **Verification**: one bullet per real command (type check, lint, format check, unit tests, end-to-end tests). Prefer the repo's scripts over raw tool invocations. Add the `workers` note when that profile is on.
-- **Testing**: only with a test profile.
+- **Verification**: one bullet per real command (type check, lint, format check, unit tests, end-to-end tests). Prefer the repo's scripts over raw tool invocations. Add the `workers` note when that recommendation is on.
+- **Testing**: only with a test recommendation.

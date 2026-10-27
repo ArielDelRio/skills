@@ -51,7 +51,7 @@ After the setup, check each step's prerequisites and report one line per step: r
 
 - **Grill**: `docs/agents/domain.md` exists and the `## Agent skills` block points to it. `GLOSSARY.md` and `docs/adr/` are created lazily; their absence is fine.
 - **Plan**: `docs/agents/issue-tracker.md` exists. For GitHub, `gh auth status` succeeds and `gh repo view` resolves this repo; for GitLab, the same with `glab`. When `triage` is available, every label in `docs/agents/triage-labels.md` exists in the tracker.
-- **Build**: the repo has a test command `tdd` can drive (from the testing profiles or the repo's scripts). No test runner is a gap to report, not to fix here.
+- **Build**: the repo has a test command `tdd` can drive (from the testing recommendations or the repo's scripts). No test runner is a gap to report, not to fix here.
 - **Review**: `CODING_STANDARDS.md` exists at the root and links every standard in `docs/standards/`. `code-review` treats that file as a mandatory standards source.
 - **Ship**: a Git remote exists and the PR tool (`gh pr` or `glab mr`) is authenticated.
 - **Improve**: `retro` turns mechanical mistakes into deterministic checks and judgement calls into rules in `CODING_STANDARDS.md`. Report which guardrails exist to receive checks: linter config, pre-commit hooks, CI workflows.

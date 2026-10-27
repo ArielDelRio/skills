@@ -15,13 +15,13 @@ Add `-g` to install for your user instead of the current project. Update later w
 In the repo, run `/setup-ariel-skills` (Claude Code) or `$setup-ariel-skills` (Codex). It:
 
 1. Runs `curate-agents-md`, so `AGENTS.md` is the single instruction file and `CLAUDE.md` only imports it.
-2. Detects the stack and proposes **profiles** (`core`, `architecture`, `typescript`, `web-ui`, `react`, `workers`, `vitest`, `playwright`).
+2. Detects the stack and proposes **recommendations** per stack (`core`, `architecture`, `testing`, `typescript`, `web-ui`, `react`, `workers`, `vitest`, `playwright`, `mutation`, `property-based`), each one optional.
 3. Shows a draft of everything it will write and waits for your confirmation.
-4. Writes a managed block into `AGENTS.md`, writes `CODING_STANDARDS.md` with the applicable standards in `docs/standards/`, and installs the profile skills at project level, recorded in `skills-lock.json`.
+4. Writes a managed block into `AGENTS.md`, writes `CODING_STANDARDS.md` with the applicable standards in `docs/standards/`, and installs the recommended skills at project level, recorded in `skills-lock.json`.
 5. Sets up [Matt Pocock's workflow](./skills/engineering/setup-ariel-skills/MATT-WORKFLOW.md) (grill, implement, code-review, pr, retro): offers to install his skills, runs his setup here, and writes its block into `AGENTS.md`.
 6. Verifies links, installed skills, the repo's check commands, and that each workflow step is ready.
 
-Re-running it is safe: it only changes its own managed block, shows diffs for edited standards, and never updates third-party skills on its own. See [PROFILES.md](./skills/engineering/setup-ariel-skills/PROFILES.md) for what each profile installs.
+Re-running it is safe: it only changes its own managed block, shows diffs for edited standards, and never updates third-party skills on its own. See [RECOMMENDATIONS.md](./skills/engineering/setup-ariel-skills/RECOMMENDATIONS.md) for what each recommendation installs.
 
 ## Skills
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0
+
+- "Profiles" are now called **recommendations** (`RECOMMENDATIONS.md`).
+- New `testing` standard, always recommended and aligned with Matt's `tdd`: test levels, critical-journey selection for end-to-end tests, mutation testing as a suite-quality signal, and when each specialized test type pays off.
+- New recommendations: `testing`, `mutation` (StrykerJS, mutmut, cargo-mutants, Gremlins, PIT; report-only on changed code), `property-based`.
+- `playwright` adds a journey review that lists critical journeys and which are covered.
+- Research behind it: `docs/research/testing-strategies.md`.
+
 ## 0.5.0
 
 - Adopt equivalent unmarked sections in `AGENTS.md` (language, standards, verification, testing) into the managed block instead of appending a duplicate. `curate-agents-md` reports such sections when run on its own.
