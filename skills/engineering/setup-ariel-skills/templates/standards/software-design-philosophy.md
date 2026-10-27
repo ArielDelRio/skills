@@ -1,4 +1,5 @@
 <!-- setup-ariel-skills v<version> -->
+<!-- aligned-with: wondelai/skills software-design-philosophy 0dea03f507c913801c94516e352e6859116a02d5 -->
 # Software design philosophy
 
 ## Scope and authority
@@ -81,7 +82,16 @@ Information leakage, temporal decomposition, unnecessary special cases, vague na
 
 ## Supporting skills and sources
 
-Use the `software-design-philosophy` skill for detailed examples. The shared `codebase-design` skill provides complementary vocabulary for interface depth and locality. This project's rules above govern tradeoffs, verification, and review; third-party scoring systems and effort percentages are not acceptance criteria.
+Use the `software-design-philosophy` skill for detailed examples. The shared `codebase-design` skill provides complementary vocabulary for interface depth and locality.
+
+Where the skill and this standard differ, this standard wins:
+
+| Skill | This standard |
+| --- | --- |
+| Score designs out of 10 from its diagnostic table. | Report concrete failures and their consequences; no numeric score. |
+| Invest 10-20% of time in design. | Invest in design within each change's scope; no effort quota. |
+| Merge modules that share knowledge. | Merge within a layer. When shared knowledge spans a boundary of [Clean Architecture](clean-architecture.md), place it in the layer that owns it instead. |
+| Improve structure in every change. | Improve what the task touches, preserving existing contracts; record larger follow-ups in the issue tracker. |
 
 Primary references:
 

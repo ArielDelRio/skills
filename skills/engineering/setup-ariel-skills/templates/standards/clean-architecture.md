@@ -1,4 +1,5 @@
 <!-- setup-ariel-skills v<version> -->
+<!-- aligned-with: wshobson/agents plugins/backend-development/skills/architecture-patterns be57c0b2e3c05c528ca6132b87410b385718775f -->
 # Clean Architecture
 
 ## Scope and adoption
@@ -68,7 +69,20 @@ Validate runtime bindings and authentication when those integrations change.
 
 ## Supporting skill and references
 
-Use the `architecture-patterns` skill when designing or refactoring these boundaries. Adapt its examples to this repo's language and the scope above; its advanced patterns are optional reference material.
+Use the `architecture-patterns` skill when designing or refactoring these boundaries. Adapt its examples to this repo's language and the scope above; its advanced patterns (bounded contexts, anti-corruption layers, domain events, outbox) are optional reference material for when a concrete requirement calls for them.
+
+Where the skill and this standard differ, this standard wins:
+
+| Skill | This standard |
+| --- | --- |
+| Every layer boundary is crossed through an abstract interface. | Interfaces for external capabilities and meaningful variation; ordinary internal calls stay direct. |
+| Generic CRUD repositories (`find`, `save`, `delete`). | Ports shaped around business operations, with the atomicity each use case needs. A read followed by a save does not replace a guarded write. |
+| Ports live in `domain/interfaces/`. | Ports belong to the application layer that uses them. |
+| Top-level `domain/`, `use_cases/`, `adapters/` folders. | Grouped by business capability, created as real code moves in. |
+| A dependency injection container wires the graph. | Explicit constructor or parameter injection at a composition root; a container only when justified. |
+| Swapping implementations motivates ports. | Isolating a platform dependency justifies a port, even with one implementation. |
+
+When the repo has a `GLOSSARY.md`, its terms are the ubiquitous language for entities, value objects, and use cases.
 
 - [The Clean Architecture, Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Hexagonal Architecture, Alistair Cockburn](https://alistair.cockburn.us/hexagonal-architecture)

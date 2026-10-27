@@ -3,7 +3,7 @@ name: setup-ariel-skills
 description: "Prepare this repo with my engineering standards, agent instructions, and the third-party skills that fit its stack. Safe to re-run to update."
 disable-model-invocation: true
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Setup Ariel's skills
@@ -44,7 +44,7 @@ Then match the repo against every profile in [PROFILES.md](./PROFILES.md). The c
 
 Summarise the stack and what this skill already installed (if anything). Then take the sections in order, one answer per section. Lead each with the recommended answer so the user can accept it in a word. Skip a section when exploration already settled it.
 
-**Section A: Profiles.** List detected profiles with their skills, then ambiguous ones with the question that settles them. The user accepts, adds, or drops profiles. `core` is always on.
+**Section A: Profiles.** Profiles are recommendations. List the recommended ones (`core`, `architecture`, and every detected one) with their skills and standards, then ambiguous ones with the question that settles them. The user accepts, adds, or drops any of them, `core` included.
 
 **Section B: Already available skills.** For each profile skill that already reaches the agent from a user-level install or plugin, recommend **skipping** the project install: the same skill twice shows up twice and can drift. Offer the project install only if the user wants the repo self-contained (cloud agents, other machines).
 
@@ -78,10 +78,12 @@ Let the user edit the draft. Nothing is written until they confirm.
 
 If the markers exist, replace only what lies between them and update the version. Otherwise append the block at the end of the file. Never edit content outside the markers. If text outside the block contradicts it (for example, a different documentation language), point that out to the user instead of changing it.
 
-**Standards.** Copy [templates/CODING_STANDARDS.md](./templates/CODING_STANDARDS.md) to the root and the templates from [templates/standards/](./templates/standards/) into `docs/standards/` for accepted profiles, replacing `<version>` in each stamp with this skill's version. Without the `architecture` profile, drop the Clean Architecture row from `CODING_STANDARDS.md` and the "Fit with Clean Architecture" section from `software-design-philosophy.md`; without `web-ui`, drop the UI design guidance section. For a file that already exists, compare it with the template, ignoring its **Adoption in this repo** section (and, for `CODING_STANDARDS.md`, its **Rules** section, which `retro` and the user own):
+**Standards.** Copy [templates/CODING_STANDARDS.md](./templates/CODING_STANDARDS.md) to the root and the templates from [templates/standards/](./templates/standards/) into `docs/standards/` for accepted profiles, replacing `<version>` in each stamp with this skill's version. Without the `architecture` profile, drop the Clean Architecture row from `CODING_STANDARDS.md`, and from `software-design-philosophy.md` the "Fit with Clean Architecture" section and the precedence-table row that links it; without `web-ui`, drop the UI design guidance section. For a file that already exists, compare it with the template, ignoring its **Adoption in this repo** section (and, for `CODING_STANDARDS.md`, its **Rules** section, which `retro` and the user own):
 
 - Identical: leave it.
 - Different: show the diff and let the user choose per file between taking the template (keeping the Adoption section) and keeping the local file. Local edits are never discarded without that choice.
+
+Keep each `aligned-with` stamp exactly as the template has it: it records which upstream revision of the supporting skill the standard was checked against.
 
 After copying, add an **Adoption in this repo** section to each architecture standard: two to four sentences on where current code stands against the target (for example, a module that mixes business rules with SQL), with real paths. Keep `CODING_STANDARDS.md` listing only the standards actually present. If a `docs/standards/README.md` index exists, propose merging it into `CODING_STANDARDS.md` and removing it, so standards have one index.
 
@@ -106,6 +108,7 @@ The completion criterion: every check below passes, or its failure is reported t
 - Every relative link in the managed block and in `CODING_STANDARDS.md` resolves to an existing file.
 - Every skill of every accepted profile appears in `skills-lock.json` and as `.agents/skills/<name>/SKILL.md`, and `.claude/skills/<name>` resolves to it.
 - The verification commands written into the managed block run. Report failures; fixing pre-existing failures is outside this skill.
+- **Drift**: from the repo root, run `bash <this skill's folder>/scripts/check-drift.sh docs/standards/*.md`. For each drifted standard, read the upstream changes it lists, and report whether they contradict the standard, add guidance worth adopting, or are irrelevant. Propose edits to the repo's standard for the first two, and update its stamp to the latest commit once the user accepts or dismisses them. Tell the user when the drift also affects this skill's templates, which are maintained in `ArielDelRio/skills`.
 - Unless the user opted out of Matt's workflow, every readiness check in [MATT-WORKFLOW.md](./MATT-WORKFLOW.md) has been run.
 - `git status` shows only the files this run intended to touch.
 

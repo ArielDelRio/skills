@@ -2,6 +2,10 @@
 
 A **profile** bundles what a repo gets for one part of its stack: skills to install, standards to copy, managed-block sections, and toolchain offers. Install only what a detected or accepted profile lists, so a backend repo never receives UI guidance and a Python repo never receives TypeScript tooling.
 
+Profiles are recommendations: the user accepts or declines each one, and nothing is imposed on the repo.
+
+A skill paired with a standard is kept coherent with it: the standard records the upstream commit it was aligned with (`aligned-with` stamp) and a table of where it overrides the skill. `scripts/check-drift.sh` reports when that skill changed upstream since.
+
 A skill that already reaches the agent from a user-level install or plugin is skipped by default (see Section B of `SKILL.md`). Sources were reviewed when added. The installed revision of each skill is recorded by hash in the target repo's `skills-lock.json`.
 
 ## core
@@ -15,7 +19,7 @@ Always on.
 
 ## architecture
 
-- **Detect**: an application or service where business behavior meets platform integrations (HTTP handlers, database access, queues, UI state). **Not detected** for libraries, CLIs, config repos, and script collections. **Ambiguous** for a small app with little business logic: ask.
+- **Detect**: always recommended. Note the fit when presenting it: strong for an application or service where business behavior meets platform integrations (HTTP handlers, database access, queues, UI state); weak for libraries, CLIs, config repos, and script collections, where the user may prefer to decline.
 - **Skills**: `architecture-patterns` from `wshobson/agents`.
 - **Standards**: `clean-architecture.md`.
 

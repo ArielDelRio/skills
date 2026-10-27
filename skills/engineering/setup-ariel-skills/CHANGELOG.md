@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+- `architecture` is always recommended; every profile, `core` included, is a recommendation the user can decline.
+- Standards record the upstream commit of their supporting skill (`aligned-with` stamp) and a precedence table of where they override it.
+- New `scripts/check-drift.sh`; verification reports drifted standards and proposes updates.
+
 ## 0.3.0
 
 - Run Matt Pocock's setup inside this run (reading his user-invoked `SKILL.md`), writing its block into `AGENTS.md`; offer to install his skills at user level when missing.

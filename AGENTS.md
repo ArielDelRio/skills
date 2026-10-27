@@ -25,6 +25,10 @@ When a skill depends on another model-invoked skill, instruct the agent to call 
 
 Skills that write files into other repositories carry `metadata.version` in their frontmatter and stamp that version into what they write. Bump it (semver) whenever their templates or written output change, and record the change in the skill's `CHANGELOG.md`.
 
+## Standards and their skills
+
+Each standard template in `setup-ariel-skills/templates/standards/` carries an `aligned-with` stamp (upstream repo, skill path, commit) and a precedence table listing where it overrides its supporting skill. Run `skills/engineering/setup-ariel-skills/scripts/check-drift.sh` before releasing a new setup version; for each drifted standard, review the upstream diff, update the standard and its table, then move the stamp to the reviewed commit.
+
 ## Writing
 
 Write all prose, comments, and commit messages in English. Call the Skill tool with `writing-for-agents` before creating or editing a `SKILL.md` or this file.
