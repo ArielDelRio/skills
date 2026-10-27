@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.7.0
+
+Fixes from the first end-to-end run (Home Hub, 0.5.0 to 0.6.0):
+
+- The draft must show new files in full and changes as diffs; a summary is not a draft.
+- Sections are asked one at a time, and `curate-agents-md` approvals finish before exploration instead of being batched with setup questions.
+- Every standard gets an **Adoption in this repo** section, not only architecture standards.
+- Ask before installing dependencies needed by verification commands.
+- The Language section records intentional exceptions (such as a user-facing README in another language).
+- `curate-agents-md`: guidance on maintaining the instruction file is not a no-op, and pointers to non-obvious files are navigation, not a cache.
+
 ## 0.6.0
 
 - "Profiles" are now called **recommendations** (`RECOMMENDATIONS.md`).

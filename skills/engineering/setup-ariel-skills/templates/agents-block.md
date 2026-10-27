@@ -26,7 +26,7 @@ See [docs/testing.md](docs/testing.md) for test setup, scope, commands, and what
 
 Section rules:
 
-- **Language**: always. If the repo already documents a different language policy outside the block, ask the user which wins before writing.
+- **Language**: always. If the repo already documents a different language policy outside the block, ask the user which wins before writing. When files are intentionally in another language (for example, a user-facing `README.md`), ask the user and record each as an exception in this section, so it is not reported as a contradiction again.
 - **Engineering standards**: always.
 - **Verification**: one bullet per real command (type check, lint, format check, unit tests, end-to-end tests). Prefer the repo's scripts over raw tool invocations. Add the `workers` note when that recommendation is on.
 - **Testing**: only with a test recommendation.

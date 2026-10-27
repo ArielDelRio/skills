@@ -3,7 +3,7 @@ name: setup-ariel-skills
 description: "Prepare this repo with my engineering standards, agent instructions, and the third-party skills that fit its stack. Safe to re-run to update."
 disable-model-invocation: true
 metadata:
-  version: "0.6.0"
+  version: "0.7.0"
 ---
 
 # Setup Ariel's skills
@@ -23,7 +23,7 @@ The setup version is `metadata.version` above. It is stamped into every file thi
 
 ### 0. Curate the agent files
 
-Call the Skill tool with `curate-agents-md` and let it finish, including the user's approval of its changes. Every later step writes into the `AGENTS.md` it leaves behind, with `CLAUDE.md` only importing it.
+Call the Skill tool with `curate-agents-md` and let it finish, including the user's approval of its changes, before step 1. Its questions are asked and answered on their own, never folded into this skill's sections. Every later step writes into the `AGENTS.md` it leaves behind, with `CLAUDE.md` only importing it.
 
 ### 1. Explore
 
@@ -42,7 +42,7 @@ Then match the repo against every recommendation in [RECOMMENDATIONS.md](./RECOM
 
 ### 2. Present findings and ask
 
-Summarise the stack and what this skill already installed (if anything). Then take the sections in order, one answer per section. Lead each with the recommended answer so the user can accept it in a word. Skip a section when exploration already settled it.
+Summarise the stack and what this skill already installed (if anything). Then take the sections in order: ask one section, wait for its answer, then the next. Batching sections into one prompt hides the later ones behind the first answer. Lead each with the recommended answer so the user can accept it in a word. Skip a section when exploration already settled it.
 
 **Section A: Recommendations.** List the recommended ones (`core`, `architecture`, and every detected one) with their skills and standards, then ambiguous ones with the question that settles them. The user accepts, adds, or drops any of them, `core` included.
 
@@ -59,13 +59,14 @@ Summarise the stack and what this skill already installed (if anything). Then ta
 Show the user, before writing:
 
 - Equivalent sections found in `AGENTS.md`, and the proposed adoption of each.
-- The managed block for `AGENTS.md`, built from [templates/agents-block.md](./templates/agents-block.md) with the sections of accepted recommendations.
-- The list of standards files to create or update, and for each existing one, the diff between it and the new template.
+- The managed block for `AGENTS.md`, built from [templates/agents-block.md](./templates/agents-block.md) with the sections of accepted recommendations, as a diff against the current block.
+- Every file to be created, in full, including its **Adoption in this repo** section.
+- Every existing file to be changed, as a diff.
 - The exact `npx skills add` commands.
 - Any toolchain change accepted in Section C.
 - The install command for Matt's skills, if accepted in Section E.
 
-Let the user edit the draft. Nothing is written until they confirm.
+A summary of what will change is not a draft: the user confirms the actual text. Let them edit it. Nothing is written until they confirm.
 
 ### 4. Write
 
@@ -86,7 +87,7 @@ If the markers exist, replace only what lies between them and update the version
 
 Keep each `aligned-with` stamp exactly as the template has it: it records which upstream revision of the supporting skill the standard was checked against.
 
-After copying, add an **Adoption in this repo** section to each architecture standard: two to four sentences on where current code stands against the target (for example, a module that mixes business rules with SQL), with real paths. Keep `CODING_STANDARDS.md` listing only the standards actually present. If a `docs/standards/README.md` index exists, propose merging it into `CODING_STANDARDS.md` and removing it, so standards have one index.
+After copying, add an **Adoption in this repo** section to each standard: two to four sentences on where current code stands against it (for example, a module that mixes business rules with SQL, or journeys without end-to-end tests), with real paths. Keep `CODING_STANDARDS.md` listing only the standards actually present. If a `docs/standards/README.md` index exists, propose merging it into `CODING_STANDARDS.md` and removing it, so standards have one index.
 
 **Testing guide.** When the `testing` recommendation is accepted and `docs/testing.md` is missing, write it from the repo's real scripts and configs: the commands, what each suite covers, and what local runs cannot verify (bindings, auth, deployed runtime). Read the commands from `package.json` or the equivalent; never invent one. Without the `testing` recommendation, drop its row from `CODING_STANDARDS.md`.
 
@@ -110,7 +111,7 @@ The completion criterion: every check below passes, or its failure is reported t
 
 - Every relative link in the managed block and in `CODING_STANDARDS.md` resolves to an existing file.
 - Every skill of every accepted recommendation appears in `skills-lock.json` and as `.agents/skills/<name>/SKILL.md`, and `.claude/skills/<name>` resolves to it.
-- The verification commands written into the managed block run. Report failures; fixing pre-existing failures is outside this skill.
+- The verification commands written into the managed block run. If they need dependencies that are not installed, ask before installing them with the repo's documented install command; installing changes the user's environment. Report failures; fixing pre-existing failures is outside this skill.
 - **Drift**: from the repo root, run `bash <this skill's folder>/scripts/check-drift.sh docs/standards/*.md`. For each drifted standard, read the upstream changes it lists, and report whether they contradict the standard, add guidance worth adopting, or are irrelevant. Propose edits to the repo's standard for the first two, and update its stamp to the latest commit once the user accepts or dismisses them. Tell the user when the drift also affects this skill's templates, which are maintained in `ArielDelRio/skills`.
 - Unless the user opted out of Matt's workflow, every readiness check in [MATT-WORKFLOW.md](./MATT-WORKFLOW.md) has been run.
 - `git status` shows only the files this run intended to touch.
