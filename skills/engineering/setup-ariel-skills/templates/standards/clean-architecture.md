@@ -68,7 +68,7 @@ Validate runtime bindings and authentication when those integrations change.
 
 ## Supporting skill and references
 
-Use the installed [architecture-patterns skill](../../.agents/skills/architecture-patterns/SKILL.md) when designing or refactoring these boundaries. Adapt its examples to this repo's language and the scope above; its advanced patterns are optional reference material.
+Use the `architecture-patterns` skill when designing or refactoring these boundaries. Adapt its examples to this repo's language and the scope above; its advanced patterns are optional reference material.
 
 - [The Clean Architecture, Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Hexagonal Architecture, Alistair Cockburn](https://alistair.cockburn.us/hexagonal-architecture)

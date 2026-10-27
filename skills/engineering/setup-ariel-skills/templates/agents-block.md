@@ -10,7 +10,7 @@ Write repository documentation, code comments, commit messages, and PR titles an
 
 ## Engineering standards
 
-Before designing, implementing, refactoring, or reviewing code, consult [docs/standards/README.md](docs/standards/README.md) and read the standards whose applicability matches the task. Project standards take precedence over examples in third-party skills.
+Before designing, implementing, refactoring, or reviewing code, consult [CODING_STANDARDS.md](CODING_STANDARDS.md) and read the standards whose applicability matches the task. Project standards take precedence over examples in third-party skills.
 
 ## Verification
 

@@ -81,7 +81,7 @@ Information leakage, temporal decomposition, unnecessary special cases, vague na
 
 ## Supporting skills and sources
 
-Use the installed [software-design-philosophy skill](../../.agents/skills/software-design-philosophy/SKILL.md) for detailed examples. The shared `codebase-design` skill provides complementary vocabulary for interface depth and locality. This project's rules above govern tradeoffs, verification, and review; third-party scoring systems and effort percentages are not acceptance criteria.
+Use the `software-design-philosophy` skill for detailed examples. The shared `codebase-design` skill provides complementary vocabulary for interface depth and locality. This project's rules above govern tradeoffs, verification, and review; third-party scoring systems and effort percentages are not acceptance criteria.
 
 Primary references:
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0
+
+- Run Matt Pocock's setup inside this run (reading his user-invoked `SKILL.md`), writing its block into `AGENTS.md`; offer to install his skills at user level when missing.
+- Check readiness of each step of his workflow: grill, plan, build, review, ship, improve.
+- Standards index moves from `docs/standards/README.md` to root `CODING_STANDARDS.md`, which `code-review` reads and `retro` extends. Existing indexes are proposed for merge.
+- Templates name skills instead of linking `.agents/skills/` paths, which break when a skill is installed at user level.
+
 ## 0.2.0
 
 - New step 0: run `curate-agents-md` first, so `AGENTS.md` is the single instruction file and `CLAUDE.md` only imports it. The managed block always goes into `AGENTS.md`.
