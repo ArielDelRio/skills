@@ -34,7 +34,7 @@ Read whatever exists; assume nothing:
 - `CODING_STANDARDS.md`, `docs/standards/`, and `docs/testing.md`: present? stamped by this skill? edited since? A `docs/standards/README.md` index is the layout of versions before 0.3.0.
 - `skills-lock.json`, `.agents/skills/`, `.claude/skills/`: what is already installed at project level, and from which source.
 - Your available skills: which recommended skills already reach the agent from a user-level install or a plugin (for example, Matt's skills installed globally).
-- Languages: which language `README.md`, `docs/`, and code comments are written in. Where any differ from the Language section of `templates/agents-block.md` (or an existing language policy), Section B of step 3 asks whether each is an intentional exception.
+- Languages: which language `README.md`, `docs/`, and code comments are written in. Where any differ from the Language section of `templates/agents-block.md` (or an existing language policy), the draft in step 3 proposes each as an exception for the user to accept or reject.
 - `.gitignore`: does it ignore `.agents/`, `.claude/`, or `skills-lock.json`?
 - Source layout: is there business behavior behind platform integrations (HTTP, database, queues, UI), or is this a library, CLI, or script collection?
 - Matt's workflow: which skills in the availability table of [MATT-WORKFLOW.md](./MATT-WORKFLOW.md) are among your available skills, whether his Claude Code plugin is installed, and whether `docs/agents/` already holds his setup's output.
