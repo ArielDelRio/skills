@@ -3,7 +3,7 @@ name: setup-ariel-skills
 description: "Prepare this repo with my engineering standards, agent instructions, and the third-party skills that fit its stack. Safe to re-run to update."
 disable-model-invocation: true
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Setup Ariel's skills
@@ -58,6 +58,7 @@ Summarise the stack and what this skill already installed (if anything). Then ta
 
 Show the user, before writing:
 
+- Equivalent sections found in `AGENTS.md`, and the proposed adoption of each.
 - The managed block for `AGENTS.md`, built from [templates/agents-block.md](./templates/agents-block.md) with the sections of accepted profiles.
 - The list of standards files to create or update, and for each existing one, the diff between it and the new template.
 - The exact `npx skills add` commands.
@@ -76,7 +77,7 @@ Let the user edit the draft. Nothing is written until they confirm.
 <!-- setup-ariel-skills:end -->
 ```
 
-If the markers exist, replace only what lies between them and update the version. Otherwise append the block at the end of the file. Never edit content outside the markers. If text outside the block contradicts it (for example, a different documentation language), point that out to the user instead of changing it.
+If the markers exist, replace only what lies between them and update the version. Otherwise, before appending, look for **equivalent sections**: unmarked sections covering the same topic as a block section (a language policy, a pointer to standards, verification commands, a testing pointer), typically left by a manual setup or an earlier tool. For each, propose **adopting** it: its repo-specific facts (extra checks, runtime caveats, language exceptions) move into the corresponding block section, and the unmarked section is removed, so each topic is stated once. Show the result as a diff in step 3. Append the block at the end of the file only after equivalent sections are adopted or the user chose to keep them. Never edit content outside the markers. If text outside the block contradicts it (for example, a different documentation language), point that out to the user instead of changing it.
 
 **Standards.** Copy [templates/CODING_STANDARDS.md](./templates/CODING_STANDARDS.md) to the root and the templates from [templates/standards/](./templates/standards/) into `docs/standards/` for accepted profiles, replacing `<version>` in each stamp with this skill's version. Without the `architecture` profile, drop the Clean Architecture row from `CODING_STANDARDS.md`, and from `software-design-philosophy.md` the "Fit with Clean Architecture" section and the precedence-table row that links it; without `web-ui`, drop the UI design guidance section. For a file that already exists, compare it with the template, ignoring its **Adoption in this repo** section (and, for `CODING_STANDARDS.md`, its **Rules** section, which `retro` and the user own):
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- Adopt equivalent unmarked sections in `AGENTS.md` (language, standards, verification, testing) into the managed block instead of appending a duplicate. `curate-agents-md` reports such sections when run on its own.
+
 ## 0.4.0
 
 - `architecture` is always recommended; every profile, `core` included, is a recommendation the user can decline.

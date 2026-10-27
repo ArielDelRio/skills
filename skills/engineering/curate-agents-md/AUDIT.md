@@ -14,6 +14,7 @@ Managed blocks (see `SKILL.md`) are audited only for broken paths and contradict
 
 - **Duplicated meaning**: the same instruction in two places (within the file, or copied from `README.md`, `CONTRIBUTING.md`, or `docs/`). Keep the authoritative copy and point at it.
 - **Cache of the environment**: restates what one lookup reveals: a directory tree, the full script list from `package.json`, dependency versions, linter or formatter rules. Remove it. Keep what no file confesses: unwritten conventions, the reason behind a choice, gotchas.
+- **Unmarked managed content**: an unmarked section that covers the same topic as a managed block (or as what its owning setup skill writes). When that setup skill is running, leave the finding to it; otherwise report it, naming the owning skill, so the next setup run adopts the section instead of duplicating it.
 - **Installed skill list**: names installed skills or plugins only to list them. Remove it; the harness already shows them.
 
 ## Pointers
