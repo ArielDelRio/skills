@@ -8,8 +8,8 @@ These documents define this repository's engineering conventions. Consult the ap
 | Standard | Read when |
 | --- | --- |
 | [Clean Architecture](docs/standards/clean-architecture.md) | Adding or changing business behavior, designing module boundaries, integrating a platform, or reviewing dependencies between business logic and technology. |
-| [Testing](docs/standards/testing.md) | Deciding which tests a change or project needs, proposing end-to-end tests, judging whether a suite checks behavior, or adding a specialized test type. |
 | [Software design philosophy](docs/standards/software-design-philosophy.md) | Designing or changing functions, classes, module interfaces, error handling, or design comments; refactoring or reviewing code for complexity. |
+| [Testing](docs/standards/testing.md) | Deciding which tests a change or project needs, proposing end-to-end tests, judging whether a suite checks behavior, or adding a specialized test type. |
 
 ## Rules
 

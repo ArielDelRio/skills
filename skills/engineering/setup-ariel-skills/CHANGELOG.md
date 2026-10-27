@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.1
+
+Fixes from the second end-to-end run (Home Hub, 0.6.0 to 0.7.0):
+
+- The draft is its own message with full files and diffs, written before the confirmation question.
+- Row order is not a change: existing rows stay, new rows are appended. The Testing row moves last in the template.
+- Exploration checks the language of `README.md`, `docs/`, and comments, and the draft proposes exceptions for differences.
+
 ## 0.7.0
 
 Fixes from the first end-to-end run (Home Hub, 0.5.0 to 0.6.0):

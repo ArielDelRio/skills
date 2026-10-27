@@ -3,7 +3,7 @@ name: setup-ariel-skills
 description: "Prepare this repo with my engineering standards, agent instructions, and the third-party skills that fit its stack. Safe to re-run to update."
 disable-model-invocation: true
 metadata:
-  version: "0.7.0"
+  version: "0.7.1"
 ---
 
 # Setup Ariel's skills
@@ -34,6 +34,7 @@ Read whatever exists; assume nothing:
 - `CODING_STANDARDS.md`, `docs/standards/`, and `docs/testing.md`: present? stamped by this skill? edited since? A `docs/standards/README.md` index is the layout of versions before 0.3.0.
 - `skills-lock.json`, `.agents/skills/`, `.claude/skills/`: what is already installed at project level, and from which source.
 - Your available skills: which recommended skills already reach the agent from a user-level install or a plugin (for example, Matt's skills installed globally).
+- Languages: which language `README.md`, `docs/`, and code comments are written in. Where any differ from the Language section of `templates/agents-block.md` (or an existing language policy), Section B of step 3 asks whether each is an intentional exception.
 - `.gitignore`: does it ignore `.agents/`, `.claude/`, or `skills-lock.json`?
 - Source layout: is there business behavior behind platform integrations (HTTP, database, queues, UI), or is this a library, CLI, or script collection?
 - Matt's workflow: which skills in the availability table of [MATT-WORKFLOW.md](./MATT-WORKFLOW.md) are among your available skills, whether his Claude Code plugin is installed, and whether `docs/agents/` already holds his setup's output.
@@ -56,7 +57,7 @@ Summarise the stack and what this skill already installed (if anything). Then ta
 
 ### 3. Draft and confirm
 
-Show the user, before writing:
+Write the **draft** as its own message, before any confirmation question. The question then asks only whether to apply the draft above; it never stands in for it. The draft contains:
 
 - Equivalent sections found in `AGENTS.md`, and the proposed adoption of each.
 - The managed block for `AGENTS.md`, built from [templates/agents-block.md](./templates/agents-block.md) with the sections of accepted recommendations, as a diff against the current block.
@@ -65,6 +66,7 @@ Show the user, before writing:
 - The exact `npx skills add` commands.
 - Any toolchain change accepted in Section C.
 - The install command for Matt's skills, if accepted in Section E.
+- Each language difference found in step 1, with the proposed exception line for the Language section, for the user to accept or reject.
 
 A summary of what will change is not a draft: the user confirms the actual text. Let them edit it. Nothing is written until they confirm.
 
@@ -80,7 +82,7 @@ A summary of what will change is not a draft: the user confirms the actual text.
 
 If the markers exist, replace only what lies between them and update the version. Otherwise, before appending, look for **equivalent sections**: unmarked sections covering the same topic as a block section (a language policy, a pointer to standards, verification commands, a testing pointer), typically left by a manual setup or an earlier tool. For each, propose **adopting** it: its repo-specific facts (extra checks, runtime caveats, language exceptions) move into the corresponding block section, and the unmarked section is removed, so each topic is stated once. Show the result as a diff in step 3. Append the block at the end of the file only after equivalent sections are adopted or the user chose to keep them. Never edit content outside the markers. If text outside the block contradicts it (for example, a different documentation language), point that out to the user instead of changing it.
 
-**Standards.** Copy [templates/CODING_STANDARDS.md](./templates/CODING_STANDARDS.md) to the root and the templates from [templates/standards/](./templates/standards/) into `docs/standards/` for accepted recommendations, replacing `<version>` in each stamp with this skill's version. Without the `architecture` recommendation, drop the Clean Architecture row from `CODING_STANDARDS.md`, and from `software-design-philosophy.md` the "Fit with Clean Architecture" section and the precedence-table row that links it; without `web-ui`, drop the UI design guidance section. For a file that already exists, compare it with the template, ignoring its **Adoption in this repo** section (and, for `CODING_STANDARDS.md`, its **Rules** section, which `retro` and the user own):
+**Standards.** Copy [templates/CODING_STANDARDS.md](./templates/CODING_STANDARDS.md) to the root and the templates from [templates/standards/](./templates/standards/) into `docs/standards/` for accepted recommendations, replacing `<version>` in each stamp with this skill's version. Without the `architecture` recommendation, drop the Clean Architecture row from `CODING_STANDARDS.md`, and from `software-design-philosophy.md` the "Fit with Clean Architecture" section and the precedence-table row that links it; without `web-ui`, drop the UI design guidance section. Row order in an index or table is not a change: keep existing rows where they are and add new ones at the end. For a file that already exists, compare it with the template, ignoring its **Adoption in this repo** section (and, for `CODING_STANDARDS.md`, its **Rules** section, which `retro` and the user own):
 
 - Identical: leave it.
 - Different: show the diff and let the user choose per file between taking the template (keeping the Adoption section) and keeping the local file. Local edits are never discarded without that choice.
