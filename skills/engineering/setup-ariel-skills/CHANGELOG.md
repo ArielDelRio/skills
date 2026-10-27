@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.2
+
+- Workflow readiness: "Improve" is ready only with pre-commit hooks or CI; a linter alone is partial.
+
 ## 0.7.1
 
 Fixes from the second end-to-end run (Home Hub, 0.6.0 to 0.7.0):

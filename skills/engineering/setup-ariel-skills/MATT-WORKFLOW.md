@@ -54,4 +54,4 @@ After the setup, check each step's prerequisites and report one line per step: r
 - **Build**: the repo has a test command `tdd` can drive (from the testing recommendations or the repo's scripts). No test runner is a gap to report, not to fix here.
 - **Review**: `CODING_STANDARDS.md` exists at the root and links every standard in `docs/standards/`. `code-review` treats that file as a mandatory standards source.
 - **Ship**: a Git remote exists and the PR tool (`gh pr` or `glab mr`) is authenticated.
-- **Improve**: `retro` turns mechanical mistakes into deterministic checks and judgement calls into rules in `CODING_STANDARDS.md`. Report which guardrails exist to receive checks: linter config, pre-commit hooks, CI workflows.
+- **Improve**: `retro` turns mechanical mistakes into deterministic checks and judgement calls into rules in `CODING_STANDARDS.md`. Report which guardrails exist to receive checks: linter config, pre-commit hooks, CI workflows. Ready only when pre-commit hooks or CI exist; a linter alone is **partial**, since its checks run only when someone remembers to.

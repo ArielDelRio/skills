@@ -3,7 +3,7 @@ name: setup-ariel-skills
 description: "Prepare this repo with my engineering standards, agent instructions, and the third-party skills that fit its stack. Safe to re-run to update."
 disable-model-invocation: true
 metadata:
-  version: "0.7.1"
+  version: "0.7.2"
 ---
 
 # Setup Ariel's skills
