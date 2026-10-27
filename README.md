@@ -14,10 +14,13 @@ Add `-g` to install for your user instead of the current project. Update later w
 
 In the repo, run `/setup-ariel-skills` (Claude Code) or `$setup-ariel-skills` (Codex). It:
 
-1. Detects the stack and proposes **profiles** (`core`, `architecture`, `typescript`, `web-ui`, `react`, `workers`, `vitest`, `playwright`).
-2. Shows a draft of everything it will write and waits for your confirmation.
-3. Writes a managed block into `AGENTS.md` / `CLAUDE.md`, copies the applicable standards into `docs/standards/`, and installs the profile skills at project level, recorded in `skills-lock.json`.
-4. Verifies links, installed skills, and the repo's check commands.
+1. Runs `curate-agents-md`, so `AGENTS.md` is the single instruction file and `CLAUDE.md` only imports it.
+2. Detects the stack and proposes **profiles** (`core`, `architecture`, `typescript`, `web-ui`, `react`, `workers`, `vitest`, `playwright`).
+3. Shows a draft of everything it will write and waits for your confirmation.
+4. Writes a managed block into `AGENTS.md`, copies the applicable standards into `docs/standards/`, and installs the profile skills at project level, recorded in `skills-lock.json`.
+5. Verifies links, installed skills, and the repo's check commands.
+
+If you use [Matt Pocock's skills](https://github.com/mattpocock/skills), run `/setup-matt-pocock-skills` first; this setup then moves its block into `AGENTS.md`.
 
 Re-running it is safe: it only changes its own managed block, shows diffs for edited standards, and never updates third-party skills on its own. See [PROFILES.md](./skills/engineering/setup-ariel-skills/PROFILES.md) for what each profile installs.
 
@@ -28,6 +31,10 @@ Re-running it is safe: it only changes its own managed block, shows diffs for ed
 User-invoked:
 
 - **[setup-ariel-skills](./skills/engineering/setup-ariel-skills/SKILL.md)**: Prepare a repo with my standards, agent instructions, and stack-specific skills.
+
+Model-invoked:
+
+- **[curate-agents-md](./skills/engineering/curate-agents-md/SKILL.md)**: Make `AGENTS.md` the single source of agent instructions and audit it. Also runs on its own when you ask to review or clean up `AGENTS.md`.
 
 ## Develop
 

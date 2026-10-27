@@ -8,4 +8,4 @@ Skills for daily code work.
 
 ## Model-invoked
 
-None yet.
+- **[curate-agents-md](./curate-agents-md/SKILL.md)**: Consolidate `AGENTS.md` / `CLAUDE.md` into one source of truth and audit it for duplication, stale references, and pointers without conditions.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Curate AGENTS.md"
+  short_description: "Consolidate and audit agent instruction files"

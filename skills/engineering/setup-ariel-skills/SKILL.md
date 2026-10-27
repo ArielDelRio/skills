@@ -3,14 +3,14 @@ name: setup-ariel-skills
 description: "Prepare this repo with my engineering standards, agent instructions, and the third-party skills that fit its stack. Safe to re-run to update."
 disable-model-invocation: true
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Setup Ariel's skills
 
 Prepare the current repository so any agent (Claude Code, Codex) works in it with my conventions:
 
-- **Agent instructions**: a managed block in `AGENTS.md` / `CLAUDE.md` with language rules, standards discovery, and verification commands.
+- **Agent instructions**: `AGENTS.md` as the single instruction file (curated first), with a managed block holding language rules, standards discovery, and verification commands.
 - **Standards**: `docs/standards/` with the design and architecture conventions that apply.
 - **Skills**: project-level third-party skills chosen by **profile** from the detected stack, installed with `npx skills` and recorded in `skills-lock.json`.
 
@@ -20,14 +20,21 @@ The setup version is `metadata.version` above. It is stamped into every file thi
 
 ## Process
 
+### 0. Curate the agent files
+
+Call the Skill tool with `curate-agents-md` and let it finish, including the user's approval of its changes. Every later step writes into the `AGENTS.md` it leaves behind, with `CLAUDE.md` only importing it.
+
+If `setup-matt-pocock-skills` is among your available skills and `docs/agents/issue-tracker.md` is missing, tell the user that running `/setup-matt-pocock-skills` before this skill is recommended: it writes its `## Agent skills` block into `CLAUDE.md` when that file exists, so running it first lets this step move the block into `AGENTS.md`. Continue if the user prefers to skip it.
+
 ### 1. Explore
 
 Read whatever exists; assume nothing:
 
 - Manifests and config: `package.json` (dependencies, scripts, `packageManager`, `engines`), lockfiles, `tsconfig.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `wrangler.toml` / `wrangler.json` / `wrangler.jsonc`, `biome.json`, ESLint / Prettier / Oxlint configs, `vitest.config.*`, `playwright.config.*`.
-- Agent files: `AGENTS.md` and `CLAUDE.md` at the root. Is there already a `setup-ariel-skills` managed block? Which version?
+- `AGENTS.md`: is there already a `setup-ariel-skills` managed block? Which version?
 - `docs/standards/` and `docs/testing.md`: present? stamped by this skill? edited since?
-- `skills-lock.json`, `.agents/skills/`, `.claude/skills/`: what is already installed, and from which source.
+- `skills-lock.json`, `.agents/skills/`, `.claude/skills/`: what is already installed at project level, and from which source.
+- Your available skills: which profile skills already reach the agent from a user-level install or a plugin (for example, Matt's skills installed globally).
 - `.gitignore`: does it ignore `.agents/`, `.claude/`, or `skills-lock.json`?
 - Source layout: is there business behavior behind platform integrations (HTTP, database, queues, UI), or is this a library, CLI, or script collection?
 - `docs/agents/issue-tracker.md` and whether `setup-matt-pocock-skills` is among your available skills.
@@ -40,12 +47,7 @@ Summarise the stack and what this skill already installed (if anything). Then ta
 
 **Section A: Profiles.** List detected profiles with their skills, then ambiguous ones with the question that settles them. The user accepts, adds, or drops profiles. `core` is always on.
 
-**Section B: Agent file.**
-
-- If `CLAUDE.md` exists and only imports `AGENTS.md` (`@AGENTS.md`), edit `AGENTS.md`.
-- Else if `CLAUDE.md` exists, edit it.
-- Else if `AGENTS.md` exists, edit it.
-- If neither exists, recommend creating `AGENTS.md` plus a `CLAUDE.md` containing only `@AGENTS.md`, so both harnesses read one file.
+**Section B: Already available skills.** For each profile skill that already reaches the agent from a user-level install or plugin, recommend **skipping** the project install: the same skill twice shows up twice and can drift. Offer the project install only if the user wants the repo self-contained (cloud agents, other machines).
 
 **Section C: Toolchain offers.** Only the offers listed by accepted profiles in `PROFILES.md` whose preconditions hold (for example, adopting Ultracite when no linter is configured). Each is a separate yes/no. Default is **no** for anything that replaces existing tooling.
 
@@ -55,7 +57,7 @@ Summarise the stack and what this skill already installed (if anything). Then ta
 
 Show the user, before writing:
 
-- The managed block for the agent file, built from [templates/agents-block.md](./templates/agents-block.md) with the sections of accepted profiles.
+- The managed block for `AGENTS.md`, built from [templates/agents-block.md](./templates/agents-block.md) with the sections of accepted profiles.
 - The list of standards files to create or update, and for each existing one, the diff between it and the new template.
 - The exact `npx skills add` commands.
 - Any toolchain change accepted in Section C.
@@ -64,7 +66,7 @@ Let the user edit the draft. Nothing is written until they confirm.
 
 ### 4. Write
 
-**Agent file.** The managed block is delimited by:
+**Agent file.** Write into the root `AGENTS.md`. The managed block is delimited by:
 
 ```markdown
 <!-- setup-ariel-skills:start v<version> -->
@@ -89,7 +91,7 @@ After copying, add an **Adoption in this repo** section to each architecture sta
 npx skills@latest add <source> --skill <name> -a claude-code codex -y
 ```
 
-This installs into `.agents/skills/<name>` (read by Codex), links it from `.claude/skills/<name>` (read by Claude Code), and records source and hash in `skills-lock.json`. Skip a skill already present from the same source. If it is present from a different source, ask which to keep. Updating an installed skill is a separate step: mention `npx skills@latest update -p` to the user rather than running it.
+This installs into `.agents/skills/<name>` (read by Codex), links it from `.claude/skills/<name>` (read by Claude Code), and records source and hash in `skills-lock.json`. Skip a skill already present from the same source, and a skill the user chose to skip in Section B. If it is present from a different source, ask which to keep. Updating an installed skill is a separate step: mention `npx skills@latest update -p` to the user rather than running it.
 
 **Toolchain.** Apply only the changes accepted in Section C, using the commands `PROFILES.md` gives.
 
@@ -106,6 +108,6 @@ The completion criterion: every check below passes, or its failure is reported t
 
 Report what was installed (profiles, skills with sources, files written or proposed) in a few lines.
 
-If `setup-matt-pocock-skills` is available and `docs/agents/issue-tracker.md` is missing, tell the user to run `/setup-matt-pocock-skills` next for issue tracker, triage labels, and domain docs. This skill does not configure those.
+If `setup-matt-pocock-skills` was skipped in step 0, remind the user that it configures the issue tracker, triage labels, and domain docs, which this skill leaves to it, and that `curate-agents-md` should run again afterwards to move its block into `AGENTS.md`.
 
 Re-running this skill later applies a newer version of its templates and installs skills for profiles added since. It never updates third-party skills silently.

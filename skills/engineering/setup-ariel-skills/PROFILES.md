@@ -2,14 +2,14 @@
 
 A **profile** bundles what a repo gets for one part of its stack: skills to install, standards to copy, managed-block sections, and toolchain offers. Install only what a detected or accepted profile lists, so a backend repo never receives UI guidance and a Python repo never receives TypeScript tooling.
 
-Sources were reviewed when added. The installed revision of each skill is recorded by hash in the target repo's `skills-lock.json`.
+A skill that already reaches the agent from a user-level install or plugin is skipped by default (see Section B of `SKILL.md`). Sources were reviewed when added. The installed revision of each skill is recorded by hash in the target repo's `skills-lock.json`.
 
 ## core
 
 Always on.
 
 - **Detect**: any repo.
-- **Skills**: `software-design-philosophy` from `wondelai/skills`.
+- **Skills**: `writing-for-agents` from `mattpocock/skills` (used by `curate-agents-md`); `software-design-philosophy` from `wondelai/skills`.
 - **Standards**: `README.md`, `software-design-philosophy.md`.
 - **Block sections**: Language, Engineering standards, Verification.
 
